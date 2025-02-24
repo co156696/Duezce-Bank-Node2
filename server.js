@@ -72,6 +72,9 @@ const HOST = '0.0.0.0';
 
 const app = express();
 
+
+
+
 // Es wird der App bekanntgegeben, wo die styles zu finden sind.
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
@@ -85,6 +88,9 @@ app.use(bodyParser.urlencoded({extended: true}))
 // ausgelesen werden. Nur unsere App kann den verschlüsselten cookie verwenden. Dazu wird das secret geheim "genutzet"
 
 app.use(cookieParser())
+
+const secretkey ='mein_geheimer_schluessel'
+app.use(cookieParser(secretkey));
 
 
 // Die app.get wird abgearbeitet, sobald die Index-Seite angesurft wird.
@@ -355,7 +361,7 @@ app.post('/login', (req, res) => {
 		console.log("kunde.IstEingeloggt: " + kunde.IstEingeloggt)
 
 		// Ein cookie wird gesetzt
-		res.cookie('name', 'John Doe', { maxAge: 900000, httpOnly: true });
+		res.cookie('istAngemeldet', JSON.stringify(kunde) , { maxAge: 900000, httpOnly: true , signed: true});
 
 
 		res.clearCookie('name')
