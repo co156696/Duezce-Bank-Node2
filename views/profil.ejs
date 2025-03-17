@@ -22,6 +22,15 @@
     </header>
     <main>
         <h1>Mein Profil</h1>
+
+        <form method="post">
+            <!--Das Label zeigt dem Kunden Text im Formular an.-->
+            <label>Mail Adresse</label></br>
+            <input type="text" name="Email" value=<%= Email %>></br>
+            <button type="submit" formaction="/profil">mail adresse ändern</button>
+        </form>                
+        <p><%= Meldung %></p>
+
     </main>
 
     <footer>

@@ -191,6 +191,23 @@ app.get('/profil', (req, res) => {
 	}
 });
 
+app.post('/profil', (req, res) => {
+	
+
+	if(kunde.IstEingeloggt){
+
+		// Wenn die Zugangsdaten korrekt sind, dann wird die angesurfte Seite gerendert.
+		res.render('profil.ejs',{});
+
+	}else{
+		
+		// Wenn die Zugangsdaten nicht korrekt sind, dann wird die login-Seite gerendert.
+		res.render(login.ejs',{
+			Meldung: "Email ist inkorrekt."
+		});
+	}
+});
+
 app.get('/postfach', (req, res) => {
 	res.render('postfach.ejs',{});
 });
